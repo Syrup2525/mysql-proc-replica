@@ -38,6 +38,7 @@ let createSQL = extractCreateSQL(rawText).replace(
 
 // 🔹 최종 SQL 생성
 const finalSQL = `
+SET NAMES utf8mb4;
 DELIMITER $$
 DROP PROCEDURE IF EXISTS \`${newProcName}\`$$
 ${createSQL.trim()}$$
@@ -45,5 +46,5 @@ DELIMITER ;
 `;
 
 // 🔹 파일 저장
-fs.writeFileSync(outputFilePath, finalSQL);
+fs.writeFileSync(outputFilePath, finalSQL, 'utf8');
 console.log(`📝 ${newProcName} 생성 SQL 저장 완료: ${outputFilePath}`);
